@@ -1,0 +1,34 @@
+<Window x:Class="Antivirus.UI.QuarantineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Карантин" Height="420" Width="820">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="RefreshButton" Width="120" Height="28" Click="RefreshButton_Click">Обновить</Button>
+            <Button x:Name="RestoreButton" Width="120" Height="28" Margin="8,0,0,0" Click="RestoreButton_Click">Восстановить</Button>
+            <Button x:Name="DeleteButton" Width="160" Height="28" Margin="8,0,0,0" Click="DeleteButton_Click">Удалить навсегда</Button>
+        </StackPanel>
+
+        <DataGrid x:Name="GridItems" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="60"/>
+                <DataGridTextColumn Binding="{Binding OriginalPath}" Header="Исходный путь" Width="*"/>
+                <DataGridTextColumn Binding="{Binding QuarantinePath}" Header="Карантин" Width="2*"/>
+                <DataGridTextColumn Binding="{Binding Sha256}" Header="SHA256" Width="220"/>
+                <DataGridTextColumn Binding="{Binding QuarantinedUtc}" Header="Добавлен" Width="140"/>
+                <DataGridTextColumn Binding="{Binding RestoredUtc}" Header="Восст." Width="120"/>
+                <DataGridTextColumn Binding="{Binding DeletedUtc}" Header="Удалён" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="2" Foreground="Gray" FontSize="11" Text="Выберите элемент и нажмите действие. Удаление необратимо."/>
+    </Grid>
+</Window>
+
+
